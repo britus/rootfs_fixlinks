@@ -166,7 +166,8 @@ list_dir (const char * dir_name, int dephth_level)
     /* Open the directory specified by "dir_name". */
     if (!(d = opendir (dir_name)))
     {
-        fprintf (stderr, "Cannot open directory '%s': %s\n", dir_name, strerror (errno));
+        if (dephth_level <= 0)
+            fprintf (stderr, "Cannot open directory '%s': %s\n", dir_name, strerror (errno));
         return;
     }
 
